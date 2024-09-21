@@ -1,8 +1,8 @@
 {
-  "name": "react-native-currency-input-fields",
+  "name": "@ntnghiaw/react-native-currency-input-fields",
   "description": "A simple currency input for React Native",
   "main": "expo-router/entry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",

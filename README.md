@@ -1,6 +1,6 @@
 # Welcome 👋
 
-This a simple currency input support both IOS & Android
+This is a simple currency input that supports both iOS and Android.
 
 ## Get started
 
