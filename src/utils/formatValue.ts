@@ -1,6 +1,6 @@
-import { IntlConfig } from '@/src/components/CurrencyInputProps'
-import { escapeRegExp } from '@/src/utils/escapeRegExp'
-import { getSuffix } from '@/src/utils/getSuffix'
+import { IntlConfig } from '../components/CurrencyInputProps'
+import { escapeRegExp } from './escapeRegExp'
+import { getSuffix } from './getSuffix'
 
 export type FormatValueOptions = {
   /**
@@ -66,7 +66,6 @@ export const formatValue = (options: FormatValueOptions): string => {
     prefix = '',
     suffix = '',
   } = options
-  console.log('🚀 ~ formatValue ~ options:', options)
   if (_value === '' || _value === undefined) {
     return ''
   }
@@ -122,30 +121,27 @@ export const formatValue = (options: FormatValueOptions): string => {
       )
     } else {
       if (intlSuffix && !suffix) {
-        formatted = formatted.replace(intlSuffix, `${decimalSeparator}${decimals}${intlSuffix}`)
+        formatted = formatted.replace(intlSuffix, `${decimalSeparator}${decimals} ${intlSuffix}`)
       } else {
         formatted = `${formatted}${decimalSeparator}${decimals}`
       }
     }
   }
   if (suffix && includeDecimalSeparator) {
-    console.log('🚀 ~ formatValue ~ suffix1:', suffix)
 
-    return `${formatted}${includeDecimalSeparator}${suffix}`
+    return `${formatted}${includeDecimalSeparator} ${suffix}`
   }
 
   if (intlSuffix && includeDecimalSeparator) {
-    console.log('🚀 ~ formatValue ~ suffix2:', intlSuffix)
 
-    return formatted.replace(intlSuffix, `${includeDecimalSeparator}${intlSuffix}`)
+    return formatted.replace(intlSuffix, `${includeDecimalSeparator} ${intlSuffix}`)
   }
 
   if (intlSuffix && suffix) {
-    console.log('🚀 ~ formatValue ~ suffix3:', suffix)
 
-    return formatted.replace(intlSuffix, `${includeDecimalSeparator}${suffix}`)
+    return formatted.replace(intlSuffix, `${includeDecimalSeparator} ${suffix}`)
   }
-  return [formatted, includeDecimalSeparator, suffix].join('')
+  return [formatted, includeDecimalSeparator, ' ', suffix].join('')
 }
 
 /**
@@ -179,11 +175,9 @@ const replaceParts = (
     'prefix' | 'groupSeparator' | 'decimalSeparator' | 'decimalScale' | 'disableGroupSeparators'
   >
 ): string => {
-  console.log(parts)
   return parts
     .reduce(
       (prev, { type, value }, i) => {
-        console.log(i, value, type)
         if (i === 0 && prefix) {
           if (type === 'minusSign') {
             return [value, prefix]
